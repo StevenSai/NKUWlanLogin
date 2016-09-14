@@ -4,7 +4,11 @@
     tools:context="com.steven.nkuwlanlogin.MainActivity">
 
     <item
+        android:id="@+id/resave"
+        android:title="切换用户" />
+    <item
         android:id="@+id/zan"
-        android:title="关于" />
+        android:title="关于本App" />
+
 
 </menu>

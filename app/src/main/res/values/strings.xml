@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NKU-Wlan快捷登录</string>
+    <string name="app_name">NKU无线神器</string>
     <string name="username">学号 : </string>
     <string name="password">密码 : </string>
     <string name="button_login">一键登录</string>

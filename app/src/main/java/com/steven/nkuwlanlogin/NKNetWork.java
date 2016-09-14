@@ -2,6 +2,8 @@ package com.steven.nkuwlanlogin;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
 import com.squareup.okhttp.Call;
@@ -11,6 +13,8 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 /**
@@ -35,6 +39,7 @@ public class NKNetWork {
             Call call = client.newCall(request);
 
             try {
+
                 String result = call.execute().body().string();
 
                 int tmp = result.indexOf("uid=");//没有UID说明没登陆

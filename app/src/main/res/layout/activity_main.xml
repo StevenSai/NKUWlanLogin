@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.steven.nkuwlanlogin.MainActivity">
+    tools:context=".MainActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -18,7 +18,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/username"
+                android:textSize="20sp"
+                android:id="@+id/savedinfo"
+                android:layout_gravity="center_horizontal"/>
+
             <LinearLayout
+                android:id="@+id/line1"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -38,6 +47,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/line2"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -58,6 +68,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/line3"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"

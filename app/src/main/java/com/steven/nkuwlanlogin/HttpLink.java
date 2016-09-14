@@ -28,6 +28,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by stevensai on 16/9/11.
@@ -35,15 +37,22 @@ import java.util.Map;
 public class HttpLink {
 
 
-    public void checkLoginLink(final String username, final String passWord,final NKNetWork nkNetWork,final Handler handler){
+    public void checkLoginLink(final NKNetWork nkNetWork,final Handler handler){
         new Thread(new Runnable() {
             @Override
             public void run() {
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        handler.sendEmptyMessage(0x009);
+                    }
+                },5000);
                 NetworkInfo info = nkNetWork.getLogStatus();
+                timer.cancel();
                 if(info.status == info.ONLINE){
                     handler.sendEmptyMessage(0x007);
-                }else {
-                    postLink(username,passWord);
+                }else if(info.status == info.UN_LOGIN){
                     handler.sendEmptyMessage(0x008);
                 }
             }
@@ -110,7 +119,15 @@ public class HttpLink {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        handler.sendEmptyMessage(0x009);
+                    }
+                },5000);
                 NetworkInfo info = nkNetWork.getLogStatus();
+                timer.cancel();
                 Log.d("state",info.status+"");
                 if(info.status==info.ONLINE){
                     Message msg = new Message();
@@ -133,7 +150,15 @@ public class HttpLink {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        handler.sendEmptyMessage(0x009);
+                    }
+                },5000);
                 NetworkInfo info = nkNetWork.getLogStatus();
+                timer.cancel();
                 if (info.status!=NetworkInfo.ONLINE){
                     handler.sendEmptyMessage(0x005);//未登录,无法注销
                 }else {
