@@ -19,9 +19,10 @@
                 android:layout_height="20dp" />
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -37,9 +38,10 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -56,9 +58,10 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal">
 
                 <CheckBox
                     android:layout_width="wrap_content"
@@ -71,33 +74,45 @@
                     android:textSize="30sp" />
             </LinearLayout>
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal">
                 <Button
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:textSize="30sp"
+                    android:textSize="17sp"
                     android:id="@+id/btn_login"
                     android:text="@string/button_login"/>
                 <Button
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:textSize="30sp"
+                    android:textSize="17sp"
                     android:id="@+id/btn_login1"
                     android:text="@string/button_login1"/>
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:id="@+id/btn_login2"
+                    android:text="@string/button_login2"/>
             </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Tv_info"
+                android:textSize="20sp"
+                android:layout_gravity="center_horizontal"/>
 
             <WebView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/Web">
             </WebView>
-
-
-
 
 
         </LinearLayout>

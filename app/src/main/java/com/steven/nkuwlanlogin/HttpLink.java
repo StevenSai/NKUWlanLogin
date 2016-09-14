@@ -1,7 +1,13 @@
 package com.steven.nkuwlanlogin;
 
 
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.Html;
 import android.util.Log;
+
+import com.squareup.okhttp.Request;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -27,8 +33,24 @@ import java.util.Map;
  * Created by stevensai on 16/9/11.
  */
 public class HttpLink {
-    public void postLink(final String username, final String passWord){
 
+
+    public void checkLoginLink(final String username, final String passWord,final NKNetWork nkNetWork,final Handler handler){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                NetworkInfo info = nkNetWork.getLogStatus();
+                if(info.status == info.ONLINE){
+                    handler.sendEmptyMessage(0x007);
+                }else {
+                    postLink(username,passWord);
+                    handler.sendEmptyMessage(0x008);
+                }
+            }
+        }).start();
+    }
+
+    public void postLink(final String username, final String passWord){
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -65,6 +87,58 @@ public class HttpLink {
                     e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    public void checkLink(final NKNetWork nkNetWork, final Handler mHandler){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                boolean inter = nkNetWork.checkInternet();
+                if(inter){
+                    mHandler.sendEmptyMessage(0x001);
+                }else{
+                    mHandler.sendEmptyMessage(0x002);
+                }
+            }
+        }).start();
+    }
+
+    public void getUserInfo(final NKNetWork nkNetWork, final Handler handler){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                NetworkInfo info = nkNetWork.getLogStatus();
+                Log.d("state",info.status+"");
+                if(info.status==info.ONLINE){
+                    Message msg = new Message();
+                    msg.what = 0x003;
+                    Bundle bundle = new Bundle();
+                    bundle.putString("uid",info.uid);
+                    bundle.putString("fee",info.fee+"");
+                    bundle.putString("flow",String.format("%.3f",info.flow));
+                    bundle.putString("time",String.valueOf((int)info.time));
+                    msg.setData(bundle);
+                    handler.sendMessage(msg);
+                }else if(info.status==info.UN_LOGIN){
+                    handler.sendEmptyMessage(0x004);
+                }
+            }
+        }).start();
+    }
+
+    public void unLogin(final NKNetWork nkNetWork,final Handler handler){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                NetworkInfo info = nkNetWork.getLogStatus();
+                if (info.status!=NetworkInfo.ONLINE){
+                    handler.sendEmptyMessage(0x005);//未登录,无法注销
+                }else {
+                    nkNetWork.logout();
+                    handler.sendEmptyMessage(0x006);//成功注销
                 }
             }
         }).start();
