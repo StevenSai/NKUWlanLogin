@@ -113,8 +113,25 @@ public class MainActivity extends AppCompatActivity {
                 case 0x008:
                     textView.setText("已接入校园网,但用户未登录。\n请确保学号和密码的正确性。");
                     isLogin = false;
-                    btn_login.setVisibility(View.VISIBLE);
                     progressDialog.dismiss();
+                    btn_login.setVisibility(View.VISIBLE);
+                    if(isrmb){
+                        String pass = pref.getString("password","");
+                        String uname = pref.getString("username","");
+                        user = new User(uname,pass);
+                        savedInfo.setVisibility(View.VISIBLE);
+                        savedInfo.setText("已保存用户:"+user.uid);
+                        new HttpLink().postLink(uname,pass);
+                        progressDialog.setMessage("正在自动登陆校园网...");
+                        progressDialog.show();
+                        Timer timer = new Timer();
+                        timer.schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                new HttpLink().checkLoginLink(nkNetWork,mHandler);
+                            }
+                        },888);
+                    }
                     break;
                 case 0x009:
                     textView.setText("连接超时,请确认连接南开内网");
