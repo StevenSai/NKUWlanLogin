@@ -37,6 +37,8 @@ import java.util.TimerTask;
 public class HttpLink {
 
 
+
+
     public void checkLoginLink(final NKNetWork nkNetWork,final Handler handler){
         new Thread(new Runnable() {
             @Override

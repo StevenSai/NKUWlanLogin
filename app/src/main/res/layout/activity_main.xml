@@ -19,9 +19,8 @@
                 android:layout_height="20dp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:text="@string/username"
                 android:textSize="20sp"
                 android:id="@+id/savedinfo"
                 android:layout_gravity="center_horizontal"/>
@@ -82,8 +81,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/rmb"
-                    android:textSize="30sp" />
+                    android:textSize="18sp" />
             </LinearLayout>
+
+            
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/Pic"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/Tv_info"
+                android:textSize="20sp"
+                android:layout_gravity="center_horizontal"/>
+
             <LinearLayout
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
@@ -111,13 +125,6 @@
                     android:id="@+id/btn_login2"
                     android:text="@string/button_login2"/>
             </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/Tv_info"
-                android:textSize="20sp"
-                android:layout_gravity="center_horizontal"/>
 
             <WebView
                 android:layout_width="match_parent"

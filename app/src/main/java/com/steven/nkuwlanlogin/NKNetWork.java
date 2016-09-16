@@ -13,6 +13,7 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.util.Timer;
 import java.util.TimerTask;
 
