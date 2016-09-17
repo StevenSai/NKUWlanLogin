@@ -1,5 +1,8 @@
 package com.steven.nkuwlanlogin;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -17,6 +20,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -47,8 +51,9 @@ public class AutoConnectService extends Service {
                     String time = b.getString("time");
                     String uid = b.getString("uid");
                     Log.d("info",fee+" "+flow+" "+time);
-                    toast.setText("NKU无线神器自动登录NKU内网成功\n账户:"+uid+"\n余额:"+fee+"元\n已用流量:"+flow+"GB");
-                    toast.show();
+                    //toast.setText("NKU无线神器自动登录NKU内网成功\n账户:"+uid+"\n余额:"+fee+"元\n已用流量:"+flow+"GB");
+                    //toast.show();
+                    noti(uid,fee,flow);
                     break;
                 case 0x004:
                     break;
@@ -148,5 +153,28 @@ public class AutoConnectService extends Service {
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    public void noti(String uid,String fee,String flow){
+        //Toast.makeText(ActivityTimer.this,"时间到了！！！",Toast.LENGTH_SHORT).show();
+        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        Notification.Builder NB = new Notification.Builder(AutoConnectService.this);
+        //Uri sound = Uri.fromFile(new File("/system/media/audio/notifications/Clank.ogg"));
+        //NB.setSound(sound);
+        long[] vibrates = {0,300,200,300};
+        NB.setVibrate(vibrates);
+        //NB.setLights(Color.WHITE, 2000, 500);
+        NB.setSmallIcon(R.drawable.appicon);
+        NB.setAutoCancel(true);
+        NB.setContentTitle("NKU无线神器已自动登录NKU_WLAN");
+        NB.setContentText("账户:"+uid+"\n余额:"+fee+"元\n已用流量:"+flow+"GB");
+        NB.setPriority(Notification.PRIORITY_HIGH);
+        NB.setWhen(System.currentTimeMillis());
+        PendingIntent pi = PendingIntent.getActivity(AutoConnectService.this, 0, new Intent(AutoConnectService.this, MainActivity.class), 0);
+        NB.setContentIntent(pi);
+
+        Notification notification = NB.build();
+        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+        manager.notify(2,notification);
     }
 }
