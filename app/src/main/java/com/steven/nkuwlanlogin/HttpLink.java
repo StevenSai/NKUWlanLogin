@@ -66,7 +66,7 @@ public class HttpLink {
             @Override
             public void run() {
                 DefaultHttpClient defaultclient = new DefaultHttpClient();
-                HttpPost httpPost = new HttpPost("http://202.113.18.110:801/eportal/?c=ACSetting&a=Login");
+                HttpPost httpPost = new HttpPost("http://202.113.18.106:801/eportal/?c=ACSetting&a=Login");
                 HttpResponse httpResponse;
 
                 //设置post参数

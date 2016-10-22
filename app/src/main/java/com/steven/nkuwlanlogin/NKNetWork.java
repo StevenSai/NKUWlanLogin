@@ -22,7 +22,7 @@ import java.util.TimerTask;
  * Created by stevensai on 16/9/13.
  */
 public class NKNetWork {
-    private static String host = "http://202.113.18.110";
+    private static String host = "http://202.113.18.106";
     private static String login_path = ":801/eportal/?c=ACSetting&a=Login";
     private static String logout_path = ":801/eportal/?c=ACSetting&a=Logout";
     private static OkHttpClient client = new OkHttpClient();
